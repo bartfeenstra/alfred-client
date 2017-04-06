@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Page from './Page';
 
-class Lights extends Component {
+class Lights extends Page {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +19,7 @@ class Lights extends Component {
         console.log(this.state);
     }
 
-    render() {
+    renderContent() {
         return (
             <div className="Lights">
                 <form action="#" method="POST">
