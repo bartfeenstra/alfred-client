@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Page extends Component {
+  static renderContent() {
+    return '';
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,10 +17,6 @@ class Page extends Component {
         {this.renderContent()}
       </div>
     );
-  }
-
-  renderContent() {
-    return "";
   }
 }
 
