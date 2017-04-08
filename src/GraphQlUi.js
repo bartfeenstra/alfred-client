@@ -10,7 +10,7 @@ function graphQLFetcher(graphQLParams) {
     method: 'POST',
     headers: headers,
     body: JSON.stringify(graphQLParams),
-    mode: "no-cors",
+    mode: "cors",
   }).then(response => response.json());
 }
 
