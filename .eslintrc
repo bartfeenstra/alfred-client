@@ -3,7 +3,9 @@
     "airbnb"
   ],
   "plugins": [
-    "react"
+    "react",
+        "jsx-a11y",
+        "import"
   ],
   "parserOptions": {
     "ecmaFeatures": {
