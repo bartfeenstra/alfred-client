@@ -24,6 +24,10 @@ class Lights extends Page {
         );
     }
 
+    renderTitle() {
+        return 'Lights';
+    }
+
     _setLights(event) {
         console.log(this.state);
         this.props.mutate({
