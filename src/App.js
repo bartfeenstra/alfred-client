@@ -16,7 +16,7 @@ class App extends Component {
     return (
         <ApolloProvider client={graphQlClient}>
             <BrowserRouter>
-                <div>
+                <div className="App">
                     {this.props.children}
                     <Route exact path="/">
                         <Redirect to="/lights" />
