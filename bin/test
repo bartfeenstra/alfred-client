@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-./node_modules/.bin/eslint ./src/
+ls -la ./node_modules
+./node_modules/.bin/eslint ./src/ --debug
