@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GraphiQL from 'graphiql';
 import '../node_modules/graphiql/graphiql.css';
 
-function graphQLFetcher(graphQLParams) {esult in a text/plain request being made.
+function graphQLFetcher(graphQLParams) {
   const headers = new Headers();
   headers.append('Accept', 'application/json');
   headers.append('Content-Type', 'application/json');
