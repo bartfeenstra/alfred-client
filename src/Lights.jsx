@@ -1,69 +1,50 @@
 import React from 'react';
-import { gql, graphql } from 'react-apollo';
 import Page from './Page';
+import { gql, graphql } from 'react-apollo';
+import ColorPicker from 'react-color-picker'
+import 'react-color-picker/index.css'
 
 class Lights extends Page {
-  constructor(props) {
-    super(props);
-    this.state = {
-      red: 0,
-      green: 0,
-      blue: 0,
-      luminosity: 0,
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+          color: 'black',
+        };
+    }
+    onDrag(color, c) {
+        this.setState({color});
+        this._setLights()
+    }
 
-  setRed(event) {
-    const state = this.state;
-    state.red = event.target.value;
-    this.setState(state);
-    this.setLights();
-  }
+    renderContent() {
+        return (
+            <div className="Lights">
+                <ColorPicker value={this.state.color} onDrag={this.onDrag.bind(this)} />
+            </div>
+        );
+    }
 
-  setGreen(event) {
-    const state = this.state;
-    state.green = event.target.value;
-    this.setState(state);
-    this.setLights();
-  }
+    renderTitle() {
+        return 'Lights';
+    }
 
-  setBlue(event) {
-    const state = this.state;
-    state.blue = event.target.value;
-    this.setState(state);
-    this.setLights();
-  }
-
-  setLuminosity(event) {
-    const state = this.state;
-    state.luminosity = event.target.value;
-    this.setState(state);
-    this.setLights();
-  }
-
-  renderContent() {
-    return (
-      <div className="Lights">
-        <form action="#" method="POST">
-          <input name="red" id="red" type="range" min="0" max="255" value={this.state.red} onChange={this.setRed.bind(this)} />
-          <input name="green" id="green" type="range" min="0" max="255" value={this.state.green} onChange={this.setGreen.bind(this)} />
-          <input name="blue" id="blue" type="range" min="0" max="255" value={this.state.blue} onChange={this.setBlue.bind(this)} />
-          <input name="luminosity" id="luminosity" type="range" min="0" max="255" value={this.state.luminosity} onChange={this.setLuminosity.bind(this)} />
-        </form>
-      </div>
-    );
-  }
-
-  setLights(event) {
-    this.props.mutate({
-      variables: {
-        red: this.state.red,
-        green: this.state.green,
-        blue: this.state.blue,
-        luminosity: this.state.luminosity,
-      },
-    });
-  }
+    _setLights(event) {
+        console.log(this.state);
+        this.props.mutate({
+            variables: {
+                red: parseInt(this.state.color.substring(1, 3), 16),
+                green: parseInt(this.state.color.substring(3, 5), 16),
+                blue: parseInt(this.state.color.substring(5, 7), 16),
+                luminosity: 255,
+            }
+        })
+        .then(({ data }) => {
+            console.log('got data', data);
+        })
+        .catch((error) => {
+            console.log('there was an error sending the query', error);
+        });
+    }
 }
 
 

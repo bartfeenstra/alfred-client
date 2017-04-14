@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import GraphiQL from 'graphiql';
 import '../node_modules/graphiql/graphiql.css';
 
-function graphQLFetcher(graphQLParams) {
-  // @todo These headers somehow still result in a text/plain request being made.
+function graphQLFetcher(graphQLParams) {esult in a text/plain request being made.
   const headers = new Headers();
+  headers.append('Accept', 'application/json');
   headers.append('Content-Type', 'application/json');
-  return fetch('http://localhost:5000', {
+  return fetch('http://localhost:8000', {
     method: 'POST',
     headers,
     body: JSON.stringify(graphQLParams),

@@ -14,7 +14,7 @@ const graphQlClient = new ApolloClient({
 const App = function(props, context) {
   return (
     <ApolloProvider client={graphQlClient}>
-      <div>
+      <div className="App">
         {props.children}
         <Route exact path="/">
           <Redirect to="/lights" />
