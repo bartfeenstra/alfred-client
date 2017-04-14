@@ -1,9 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import renderClient from './BrowserClient';
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('root'),
-);
+renderClient();
