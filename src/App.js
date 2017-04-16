@@ -3,11 +3,13 @@ import './App.css';
 import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import Lights from './Lights';
 import GraphQlUi from './GraphQlUi';
-import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
+import { ApolloClient, ApolloProvider } from 'react-apollo';
+import { createBatchingNetworkInterface } from 'apollo-client';
 
 const graphQlClient = new ApolloClient({
-  networkInterface: createNetworkInterface({
+  networkInterface: createBatchingNetworkInterface({
     uri: 'http://localhost:8000',
+    batchInterval: 100,
   }),
 });
 
