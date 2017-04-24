@@ -9,9 +9,9 @@ function graphQLFetcher(graphQLParams) {
   return fetch('http://localhost:8000', {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify(graphQLParams),
+    body: JSON.stringify([graphQLParams]),
     mode: "cors",
-  }).then(response => response.json());
+  }).then(response => response.json().then(json => json[0]));
 }
 
 class GraphQlUi extends Component {
