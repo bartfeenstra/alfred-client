@@ -8,30 +8,28 @@ class Lights extends Page {
     constructor(props) {
         super(props);
         this.state = {
-          color: '#000000',
+          color: null,
         };
     }
 
+    componentWillReceiveProps(nextprops) {
+        if (nextprops.data.loading || nextprops.data.error) {
+            return;
+        }
+        this.setState({
+            color: nextprops.data.lights.color,
+        });
+    }
+
     renderContent() {
-        let data = this.props.data;
-        // data.startPolling(100);
-        console.log(this.state);
-        console.log(this.props.data);
-        // const { data: {lights} } = this.props;
-        // console.log(this.props.data.error);
-        if (data.loading) {
+        if (this.state.color == null) {
             return (
                 <p>Loading...</p>
             );
         }
-        if (data.error) {
-            return (
-                <p>{data.error.toString()}</p>
-            );
-        }
         return (
             <div className="Lights">
-                <ColorPicker value={data.lights.color} onDrag={this._setLights.bind(this)} />
+                <ColorPicker value={this.state.color} onDrag={this._setLights.bind(this)} />
             </div>
         );
     }
@@ -41,6 +39,10 @@ class Lights extends Page {
     }
 
     _setLights(color) {
+        // Set the new color for immediate visual feedback to the user.
+        this.setState({
+            color: color,
+        });
         this.props.mutate({
             variables: {
                 color: color,
@@ -48,10 +50,10 @@ class Lights extends Page {
             }
         })
         .then(({ data }) => {
-            this.props.data.lights = {
-                color: data.color,
-            };
-            this.forceUpdate();
+            // Set the color as confirmed by the server.
+            this.setState({
+                color: data.setLights.lights.color,
+            });
         })
         .catch((error) => {
             console.log('there was an error sending the query', error);
