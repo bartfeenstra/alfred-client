@@ -11,7 +11,7 @@ function graphQLFetcher(graphQLParams) {
     headers: headers,
     body: JSON.stringify([graphQLParams]),
     mode: "cors",
-  }).then(response => response.json().then(json => json[0].payload));
+  }).then(response => response.json().then(json => json[0]));
 }
 
 class GraphQlUi extends Component {
