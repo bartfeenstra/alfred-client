@@ -6,21 +6,11 @@ import GraphQlUi from './GraphQlUi';
 import { ApolloClient, ApolloProvider } from 'react-apollo';
 import { createBatchingNetworkInterface } from 'apollo-client';
 
-const networkInterface = createBatchingNetworkInterface({
+const graphQlClient = new ApolloClient({
+  networkInterface: createBatchingNetworkInterface({
     uri: 'http://192.168.1.101:8000',
     batchInterval: 100,
-});
-const payloadMappingAfterware = {
-    applyBatchAfterware(response, next) {
-        response.responses = response.responses.map((response) => {
-            return response.payload;
-        });
-        next();
-    }
-};
-networkInterface.useAfter([payloadMappingAfterware]);
-const graphQlClient = new ApolloClient({
-  networkInterface: networkInterface,
+  }),
 });
 
 class App extends Component {
