@@ -8,7 +8,7 @@ import { createBatchingNetworkInterface } from 'apollo-client';
 
 const graphQlClient = new ApolloClient({
   networkInterface: createBatchingNetworkInterface({
-    uri: 'http://192.168.1.101:8000',
+    uri: 'http://192.168.1.102:8000',
     batchInterval: 100,
   }),
 });
