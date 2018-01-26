@@ -2,24 +2,25 @@
     <div class="Device">
         <h2>{{ device.label }} (<code>{{ device.id }}</code>)</h2>
         <label :for="'device-label-' + device.id">Label</label>
-        <input type="text" name="label" :id="'device-label-' + device.id" v-model="device.label"/>
+        <input type="text" name="label" :id="'device-label-' + device.id" v-model="device.label" @change="updateDevice()"/>
         <div v-if="device.powered != null">
             <label :for="'device-powered-' + device.id">Powered</label>
-            <input type="checkbox" name="powered" :id="'device-powered-' + device.id" v-model="device.powered"/>
+            <input type="checkbox" name="powered" :id="'device-powered-' + device.id" v-model="device.powered" @change="updateDevice()"/>
         </div>
         <div v-if="device.luminosity != null">
             <label :for="'device-luminosity-' + device.id">Luminosity</label>
-            <input type="range" name="luminosity" :id="'device-luminosity-' + device.id" v-model="device.luminosity" min="0.000" max="1.000" step="0.001"/>
+            <input type="range" name="luminosity" :id="'device-luminosity-' + device.id" v-model.number="device.luminosity" min="0.000" max="1.000" step="0.001" @change="updateDevice()"/>
         </div>
         <div v-if="device.color != null">
             <label :for="'device-color-' + device.id">Color</label>
-            <swatches v-model="device.color" :colors="allowedColors" shapes="circles" row-length="6" swatch-size="36" :swatch-style="{ border: '2px #e0e0e0 solid',}"></swatches>
+            <swatches v-model="device.color" :colors="allowedColors" shapes="circles" row-length="6" swatch-size="36" :swatch-style="{ border: '2px #e0e0e0 solid',}" @input="updateDevice()"></swatches>
         </div>
     </div>
 </template>
 
 <script>
     import Swatches from 'vue-swatches'
+    import Vue from 'vue'
 
     export default {
         name: 'device',
@@ -55,7 +56,9 @@
             Swatches,
         },
         methods: {
-            // update
+            updateDevice: function() {
+                Vue.$alfred.fetch('/devices/' + this.device.id, 'PUT', this.device);
+            }
         },
     }
 </script>

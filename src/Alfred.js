@@ -1,5 +1,5 @@
 class Alfred {
-    constructor(base_url, port) {
+    constructor(base_url) {
         this.baseUrl = base_url
     }
 
@@ -11,15 +11,12 @@ class Alfred {
         headers['Accept'] = 'application/json';
         return fetch(this.baseUrl + url, {
             method: method,
-            body: body ? JSON.stringify(body) : null,
+            body: body,
             headers: headers,
         })
-            // Handle network errors.
-            .catch(error => alert(error))
-            // Extract the response payload.
+            .catch(error => alert('Error during an Alfred HTTP request: ' + error))
             .then(response => response.json())
-            // Handle JSON deserialization errors.
-            .catch(error => alert(error))
+            .catch(error => alert('Error when deserializing the Alfred HTTP response as JSON: ' + error))
         // @todo Handle error responses.
     }
 }
