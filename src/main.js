@@ -11,7 +11,7 @@ const router = new VueRouter({
 })
 
 Vue.use(new VueAlfred(), {
-    baseUrl: 'http://127.0.0.1:5000',
+    baseUrl: 'http://192.168.1.102:5000',
 })
 
 Vue.use(AsyncComputed)
