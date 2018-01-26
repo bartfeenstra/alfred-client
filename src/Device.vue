@@ -29,14 +29,6 @@
                 device: this.initialDevice
             }
         },
-        computed: {
-            hexColor: {
-                // get: () => {return {hex: this.device.color}},
-                // set: (hexColor) => this.device.color = hexColor.hex,
-                get: () => {return {hex: '#000000'}},
-                set: (hexColor) => 9,
-            }
-        },
         components: {
             Swatches,
         }
