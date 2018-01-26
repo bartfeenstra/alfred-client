@@ -13,7 +13,7 @@
         </div>
         <div v-if="device.color != null">
             <label :for="'device-color-' + device.id">Color</label>
-            <swatches v-model="device.color" colors="material-basic" shapes="circles"></swatches>
+            <swatches v-model="device.color" :colors="allowedColors" shapes="circles" row-length="6" swatch-size="36" :swatch-style="{ border: '2px #e0e0e0 solid',}"></swatches>
         </div>
     </div>
 </template>
@@ -26,12 +26,37 @@
         props: ['initialDevice'],
         data() {
             return {
-                device: this.initialDevice
+                device: this.initialDevice,
+                allowedColors: [
+                    '#F44336',
+                    '#E91E63',
+                    '#9C27B0',
+                    '#673AB7',
+                    '#3F51B5',
+                    '#2196F3',
+                    '#03A9F4',
+                    '#00BCD4',
+                    '#009688',
+                    '#4CAF50',
+                    '#8BC34A',
+                    '#CDDC39',
+                    '#FFEB3B',
+                    '#FFC107',
+                    '#FF9800',
+                    '#FF5722',
+                    '#795548',
+                    '#9E9E9E',
+                    '#607D8B',
+                    '#ffffff'
+                ],
             }
         },
         components: {
             Swatches,
-        }
+        },
+        methods: {
+            // update
+        },
     }
 </script>
 
