@@ -6,11 +6,16 @@
 A web-based User Interface to [Alfred](https://github.com/bartfeenstra/alfred), your friendly home automator.
 
 ## Requirements
-- npm 5+
+- [Node.js](http://nodejs.org/) 8 or 9
+- [npm](https://www.npmjs.com/) 5
 
 ## Installation
 
 Run `./npm install`.
+
+## Building
+
+Run `npm run build`. Assets will be produced into `./dist`.
 
 ## Development
 
