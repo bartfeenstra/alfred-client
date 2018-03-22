@@ -11,7 +11,7 @@ const router = new VueRouter({
 })
 
 Vue.use(new VueAlfred(), {
-    baseUrl: 'http://alfred.bartfeenstra.com/api',
+    baseUrl: 'http://maison.bartfeenstra.com/api',
 })
 
 Vue.use(AsyncComputed)
