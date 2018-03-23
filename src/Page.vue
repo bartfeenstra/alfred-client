@@ -8,15 +8,14 @@
                         <router-link :to="'foo'">Devices</router-link>
                     </li>
                     <li>
-                        <!--<a :href="$alfred.baseUrl + '/about/openapi'">API browser</a>-->
-                        <span>API browser (coming soon)</span>
+                        <a :href="openApiUrl">API browser</a>
                     </li>
                 </ul>
             </nav>
             <div id="Page-Main">
                 <div id="Page-Header">
-                    <p class="Page-Nav-Toggle" v-if="!navSlideOut" @click="navSlideOut = true" title="Show navigation">☰</a>
-                    <p class="Page-Nav-Toggle" v-if="navSlideOut" @click="navSlideOut = false" title="Hide navigation">❌</a>
+                    <p class="Page-Nav-Toggle" v-if="!navSlideOut" @click="navSlideOut = true" title="Show navigation">☰</p>
+                    <p class="Page-Nav-Toggle" v-if="navSlideOut" @click="navSlideOut = false" title="Hide navigation">❌</p>
                     <h1 v-if="title">{{ title }}</h1>
                 </div>
                 <div id="Page-Content">
@@ -29,6 +28,7 @@
 
 <script>
     import Slideout from 'vue-slideout'
+    import Vue from 'vue'
 
     export default {
         name: 'page',
@@ -40,7 +40,11 @@
         props: {
             title: {
                 type: String,
-                required: true
+                required: true,
+            },
+            openApiUrl: {
+                type: String,
+                default: () => Vue.$alfred.baseUrl + '/about/openapi',
             },
         },
         components: {
