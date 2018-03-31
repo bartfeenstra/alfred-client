@@ -22,7 +22,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 8",
+    "safari >= 5"
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",
